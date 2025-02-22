@@ -39,7 +39,7 @@ for wav_file in "$DEST_DIR"/*.WAV; do
 
         if [ ! -f "$obsidian_file" ]; then
             whisper --language ru -f txt --model turbo --threads 8 -o /tmp "$wav_file" >"$obsidian_file"
-
+            # sed -i 's/^\[.*?\]//' "$obsidian_file"
             echo "Converted $wav_file to $obsidian_file"
         else
             echo "File $obsidian_file already exists, skipping conversion."
