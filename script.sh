@@ -3,6 +3,7 @@
 SOURCE_DIR="/run/media/$USER/USB-DISK/RECORD"
 DEST_DIR="$HOME/AudioRecordings"
 OBSIDIAN_DIR="$HOME/Obsidian/VoiceNotes"
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 mkdir -p "$DEST_DIR"
 mkdir -p "$OBSIDIAN_DIR"
@@ -37,7 +38,8 @@ for wav_file in "$DEST_DIR"/*.WAV; do
         obsidian_file="$OBSIDIAN_DIR/$txt_filename"
 
         if [ ! -f "$obsidian_file" ]; then
-            whisper --language ru --model turbo --threads 8 "$wav_file" > "$obsidian_file"
+            whisper --language ru -f txt --model turbo --threads 8 -o /tmp "$wav_file" >"$obsidian_file"
+
             echo "Converted $wav_file to $obsidian_file"
         else
             echo "File $obsidian_file already exists, skipping conversion."
