@@ -1,0 +1,18 @@
+model_name: distil-large-v3
+chunk_length: 600
+remove_timestamps: true
+cleanup: true
+use_cuda: true
+language: ru
+beam_size: 5
+vad_filter: true
+vad_parameters:
+  min_silence_duration_ms: 500
+batch_size: 16
+compute_type: float32
+output_format: txt
+word_timestamps: true
+verbose: true
+temp_dir: tmp
+split_audio: true
+output_dir: output
