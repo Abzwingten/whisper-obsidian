@@ -1,0 +1,27 @@
+# Whisper model configuration
+model:
+  name: "distill-large-v3"          # Model size (tiny/base/small/medium/large/large-v2)
+  compute_type: "int8_float16"  # float16/int8/int8_float16/default
+  use_cuda: true           # Use GPU acceleration
+
+# Audio processing settings
+audio:
+  split_audio: true        # Split large files into chunks
+  chunk_length: 1200         # Seconds per audio chunk
+  vad_filter: true         # Apply voice activity detection
+
+# Transcription parameters
+transcription:
+  beam_size: 7             # Beam size for decoding (1-10)
+  word_timestamps: false   # Generate word-level timestamps
+  remove_timestamps: true  # Clean output without timestamps
+  batch_size: 64          # Batch size for inference
+  format: "txt"            # Output format (txt/srt/vtt/json)
+
+# Output settings
+output:
+  directory: "./transcripts"  # Output directory path
+
+# Language settings
+language: "ru"             # Source language (null for auto-detect)
+verbose: false
